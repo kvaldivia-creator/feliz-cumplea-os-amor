@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1a0f24">
+<meta property="og:title" content="Feliz cumpleaños, mi amor ❤️">
+<meta property="og:description" content="Tengo una sorpresa para ti 🎂">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎂</text></svg>">
+<title>Feliz Cumpleaños, Mi Amor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Parisienne&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Layout: una noche de celebración en una sola columna móvil — sobre sellado → torta con velas → carta en papel → pareja bajo la luna */
+:root{
+  --night:#1a0f24;      /* cielo de noche ciruela */
+  --night-2:#2b1638;
+  --rose:#ff7aa2;       /* rosa de celebración */
+  --rose-deep:#d94676;
+  --candle:#ffcf6b;     /* luz de vela */
+  --paper:#fff6ee;      /* papel de la carta */
+  --ink:#3b2233;        /* tinta sobre papel */
+  --star:#fff1d6;
+  --muted:#c9b3d3;
+  --f-script:"Parisienne","Brush Script MT",cursive;
+  --f-body:"Lora",Georgia,"Times New Roman",serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{background:var(--night);color:var(--star)}
+body{font-family:var(--f-body);font-size:17px;line-height:1.7;overflow-x:hidden;min-height:100%;
+  background:radial-gradient(120% 70% at 50% 0%,var(--night-2) 0%,var(--night) 60%) fixed var(--night)}
+#sky{position:fixed;inset:0;pointer-events:none;z-index:0}
+#fx{position:fixed;inset:0;pointer-events:none;z-index:40}
+.layer{position:relative;z-index:1}
+
+/* ---------- INTRO ---------- */
+#intro{position:fixed;inset:0;z-index:30;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;padding:24px 16px;text-align:center;
+  background:radial-gradient(100% 60% at 50% 40%,rgba(255,122,162,.12),transparent 70%),var(--night);transition:opacity .9s ease,visibility .9s}
+#intro.gone{opacity:0;visibility:hidden}
+.intro-kicker{font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin:0}
+.intro-title{font-family:var(--f-script);font-size:clamp(44px,13vw,68px);line-height:1.05;color:var(--rose);margin:0;text-wrap:balance;text-shadow:0 0 24px rgba(255,122,162,.35)}
+.envelope{position:relative;width:min(78vw,290px);aspect-ratio:3/2;max-width:100%;cursor:pointer;animation:float 4s ease-in-out infinite;border:0;background:none;padding:0}
+.env-body{position:absolute;inset:0;border-radius:10px;background:linear-gradient(160deg,#ffe3ec,#f6b9cb);box-shadow:0 20px 50px rgba(0,0,0,.45)}
+.env-body::before{content:"";position:absolute;inset:0;border-radius:10px;
+  background:linear-gradient(to top right,transparent 49.5%,rgba(217,70,118,.18) 50%,transparent 51%),linear-gradient(to top left,transparent 49.5%,rgba(217,70,118,.18) 50%,transparent 51%)}
+.env-flap{position:absolute;left:0;right:0;top:0;height:58%;transform-origin:top;transition:transform .7s ease;z-index:2;
+  clip-path:polygon(0 0,100% 0,50% 100%);background:linear-gradient(180deg,#ffd0de,#f2a3bb)}
+.seal{position:absolute;left:50%;top:50%;width:54px;height:54px;transform:translate(-50%,-30%);z-index:3;border-radius:50%;display:grid;place-items:center;
+  background:radial-gradient(circle at 35% 30%,#ff8fb1,var(--rose-deep));box-shadow:0 4px 10px rgba(0,0,0,.3),inset 0 0 0 4px rgba(255,255,255,.15);transition:transform .5s,opacity .5s}
+.seal svg{width:24px;height:24px}
+.envelope.open .env-flap{transform:rotateX(180deg)}
+.envelope.open .seal{transform:translate(-50%,-30%) scale(0);opacity:0}
+.btn{font-family:var(--f-body);font-weight:600;font-size:16px;letter-spacing:.02em;border:0;border-radius:999px;padding:14px 28px;cursor:pointer;color:#fff;
+  background:linear-gradient(135deg,var(--rose),var(--rose-deep));box-shadow:0 8px 24px rgba(217,70,118,.45);transition:transform .2s}
+.btn:active{transform:scale(.96)}
+.btn:focus-visible,.envelope:focus-visible,.cake-wrap:focus-visible,.music:focus-visible{outline:3px solid var(--candle);outline-offset:4px}
+.hint{font-size:14px;color:var(--muted);margin:0}
+
+/* ---------- HERO / TORTA ---------- */
+main{max-width:520px;margin:0 auto;padding-inline:16px;padding-block:56px 40px;display:flex;flex-direction:column;gap:56px}
+.hero{text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px}
+.hero .kicker{font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:var(--candle);margin:0}
+.hero h1{font-family:var(--f-script);font-weight:400;font-size:clamp(52px,16vw,82px);line-height:1;margin:6px 0 0;color:var(--rose);text-wrap:balance;text-shadow:0 0 30px rgba(255,122,162,.4)}
+.hero h1 span{display:block;color:var(--star);font-size:.7em}
+.cake-wrap{position:relative;width:min(80vw,300px);max-width:100%;margin-top:18px;cursor:pointer;border:0;background:none;padding:0;-webkit-tap-highlight-color:transparent}
+.cake-wrap svg{width:100%;height:auto;display:block;overflow:visible}
+.glow{position:absolute;left:50%;top:6%;width:70%;height:40%;transform:translateX(-50%);border-radius:50%;
+  background:radial-gradient(closest-side,rgba(255,207,107,.35),transparent);filter:blur(8px);transition:opacity .8s;pointer-events:none}
+.blown .glow{opacity:0}
+.flame{transform-box:fill-box;transform-origin:50% 100%;animation:flicker .18s ease-in-out infinite alternate}
+.flame:nth-of-type(2){animation-duration:.22s}
+.blown .flame{animation:out .5s forwards}
+.smoke{opacity:0}
+.blown .smoke{animation:smoke 1.8s ease-out .2s forwards}
+.wish{font-family:var(--f-script);font-size:34px;color:var(--candle);min-height:1.4em;margin:0;transition:opacity .6s}
+.state-msg{font-size:15px;color:var(--muted);margin:0}
+
+/* ---------- CARTA ---------- */
+.letter{position:relative;background:var(--paper);color:var(--ink);border-radius:6px;padding:40px 24px 36px;
+  box-shadow:0 30px 60px rgba(0,0,0,.45);
+  background-image:repeating-linear-gradient(transparent 0 33px,rgba(217,70,118,.08) 33px 34px);background-position:0 28px}
+.letter::before{content:"";position:absolute;top:-14px;left:50%;width:110px;height:28px;transform:translateX(-50%) rotate(-2deg);
+  background:rgba(255,122,162,.55);border-radius:2px}
+.letter h2{font-family:var(--f-script);font-weight:400;font-size:44px;line-height:1.1;color:var(--rose-deep);margin:0 0 18px}
+.letter p{margin:0 0 18px;font-size:17px;line-height:34px;max-width:62ch}
+.letter p.reveal{animation:rise .9s ease both}
+.letter .big{font-family:var(--f-script);font-size:36px;line-height:1.2;color:var(--rose-deep);text-align:center;margin:28px 0 10px}
+.letter .sign{text-align:right;font-style:italic;margin:24px 0 0}
+.letter .sign b{display:block;font-family:var(--f-script);font-style:normal;font-weight:400;font-size:34px;color:var(--rose-deep)}
+
+/* ---------- FINAL ---------- */
+.finale{text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px}
+.finale svg{width:100%;max-width:420px;height:auto;display:block}
+.finale p{font-family:var(--f-script);font-size:40px;color:var(--rose);margin:0;line-height:1.1}
+.finale small{font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.beat{transform-box:fill-box;transform-origin:center;animation:beat 1.4s ease-in-out infinite}
+
+/* ---------- GLOBOS ---------- */
+.balloon{position:fixed;bottom:-140px;width:58px;height:72px;border-radius:50% 50% 48% 52%/55% 55% 45% 45%;z-index:35;pointer-events:none;
+  animation:floatUp linear forwards}
+.balloon::before{content:"";position:absolute;top:14%;left:22%;width:22%;height:24%;border-radius:50%;background:rgba(255,255,255,.45);transform:rotate(-25deg)}
+.balloon::after{content:"";position:absolute;top:100%;left:50%;width:1.5px;height:80px;background:rgba(255,241,214,.5)}
+.balloon i{position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);border:5px solid transparent;border-bottom-color:inherit}
+
+.music{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:45;width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,241,214,.25);
+  background:rgba(43,22,56,.8);color:var(--star);font-size:20px;cursor:pointer;backdrop-filter:blur(6px)}
+.music[aria-pressed="true"]{border-color:var(--candle);box-shadow:0 0 16px rgba(255,207,107,.4)}
+
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes flicker{from{transform:scale(1,1) rotate(-2deg)}to{transform:scale(.9,1.12) rotate(2deg)}}
+@keyframes out{to{transform:scale(0);opacity:0}}
+@keyframes smoke{0%{opacity:.7;transform:translateY(0)}100%{opacity:0;transform:translateY(-40px)}}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.18)}30%{transform:scale(1)}45%{transform:scale(1.12)}}
+@keyframes floatUp{to{transform:translate(var(--dx,0),-130vh) rotate(var(--r,6deg))}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .balloon{display:none}
+}
+</style>
+<style>html,body{margin:0}</style>
+</head>
+<body>
+<canvas id="sky" aria-hidden="true"></canvas>
+<canvas id="fx" aria-hidden="true"></canvas>
+
+<!-- INTRO -->
+<section id="intro" aria-label="Sorpresa">
+  <p class="intro-kicker">Tienes una carta</p>
+  <h2 class="intro-title">Para el amor de mi vida</h2>
+  <button class="envelope" id="envelope" aria-label="Abrir la carta">
+    <span class="env-body"></span>
+    <span class="env-flap"></span>
+    <span class="seal"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.1 0 3.6 1.2 4.3 2.4.7-1.2 2.2-2.4 4.3-2.4 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/></svg></span>
+  </button>
+  <button class="btn" id="openBtn">Abrir mi sorpresa</button>
+  <p class="hint">Sube el volumen 🎶</p>
+</section>
+
+<div class="layer">
+<main>
+  <!-- TORTA -->
+  <section class="hero" aria-label="Torta de cumpleaños">
+    <p class="kicker">Hoy es tu día</p>
+    <h1>¡Feliz Cumpleaños<span>mi amor!</span></h1>
+
+    <button class="cake-wrap" id="cake" aria-label="Soplar las velas">
+      <span class="glow"></span>
+      <svg viewBox="0 0 240 230" aria-hidden="true">
+        <!-- humo -->
+        <g class="smoke" fill="none" stroke="#e9dcef" stroke-width="2" stroke-linecap="round" opacity=".7">
+          <path d="M99 40c-6-8 6-12 0-20s6-12 0-18"/>
+          <path d="M121 40c-6-8 6-12 0-20s6-12 0-18"/>
+          <path d="M143 40c-6-8 6-12 0-20s6-12 0-18"/>
+        </g>
+        <!-- llamas -->
+        <g>
+          <path class="flame" d="M99 22c5 6 7 11 4 16a5 5 0 0 1-8 0c-3-5-1-10 4-16z" fill="#ffcf6b"/>
+          <path class="flame" d="M121 20c5 6 7 11 4 16a5 5 0 0 1-8 0c-3-5-1-10 4-16z" fill="#ffcf6b"/>
+          <path class="flame" d="M143 22c5 6 7 11 4 16a5 5 0 0 1-8 0c-3-5-1-10 4-16z" fill="#ffcf6b"/>
+        </g>
+        <!-- velas -->
+        <g>
+          <rect x="95" y="42" width="8" height="40" rx="2" fill="#fff1d6"/>
+          <rect x="117" y="40" width="8" height="42" rx="2" fill="#bfe6ff"/>
+          <rect x="139" y="42" width="8" height="40" rx="2" fill="#fff1d6"/>
+          <path d="M95 52l8-4M95 62l8-4M95 72l8-4M139 52l8-4M139 62l8-4M139 72l8-4" stroke="#ff7aa2" stroke-width="2.5"/>
+          <path d="M117 50l8-4M117 60l8-4M117 70l8-4" stroke="#ffffff" stroke-width="2.5"/>
+        </g>
+        <!-- plato -->
+        <ellipse cx="120" cy="212" rx="112" ry="13" fill="#e9dcef"/>
+        <ellipse cx="120" cy="209" rx="104" ry="9" fill="#ffffff"/>
+        <!-- piso de abajo -->
+        <rect x="28" y="136" width="184" height="72" rx="12" fill="#f28fb0"/>
+        <path d="M28 150q0-14 14-14h156q14 0 14 14v6q-8 0-10 10t-10 0-10-12-10 4-12 14-12-6-10-10-12 8-12 10-10-4-12-12-12 6-10 12-12-2-10-12-12-6-10 10-12-4V150z" fill="#fff6ee"/>
+        <circle cx="54" cy="186" r="4" fill="#ffcf6b"/><circle cx="90" cy="192" r="4" fill="#bfe6ff"/><circle cx="128" cy="186" r="4" fill="#ffcf6b"/><circle cx="166" cy="192" r="4" fill="#bfe6ff"/><circle cx="196" cy="184" r="4" fill="#ffcf6b"/>
+        <!-- piso de arriba -->
+        <rect x="58" y="80" width="124" height="60" rx="10" fill="#d94676"/>
+        <path d="M58 92q0-12 12-12h100q12 0 12 12v4q-6 0-8 8t-8 0-8-10-10 6-10 8-10-4-10-10-10 8-10 6-8-8-10 4-10 8-8-6-8-8z" fill="#fff6ee"/>
+        <path d="M80 122l3 6 6 1-4 4 1 6-6-3-6 3 1-6-4-4 6-1z" fill="#ffcf6b"/>
+        <path d="M160 122l3 6 6 1-4 4 1 6-6-3-6 3 1-6-4-4 6-1z" fill="#ffcf6b"/>
+        <path d="M120 113c-4-5-12-3-12 3 0 6 12 12 12 12s12-6 12-12c0-6-8-8-12-3z" fill="#fff6ee"/>
+      </svg>
+    </button>
+    <p class="wish" id="wish">Pide un deseo…</p>
+    <button class="btn" id="blowBtn">Soplar las velas</button>
+    <p class="state-msg" id="stateMsg">Toca la torta o el botón para soplar</p>
+  </section>
+
+  <!-- CARTA -->
+  <article class="letter" id="letter" aria-label="Carta">
+    <h2>Mi amor…</h2>
+    <p>Sabes, estoy muy feliz porque hoy es un día muy especial para ti y también para mí. Me alegra mucho saber que este es el primer cumpleaños que voy a pasar a tu lado 🥰. Tal vez no podamos estar juntos durante todo el día por nuestras cosas o por el tiempo, pero para mí, poder estar contigo aunque sea un ratito, abrazarte muy fuerte, mirarte a los ojos y celebrar este día contigo, es más que suficiente y me hace muy feliz.</p>
+    <p>Sé que has pasado por muchas cosas difíciles y que no siempre ha sido fácil para ti salir adelante, pero hoy es un día para disfrutar, para sonreír y para seguir adelante con todo lo que quieres lograr ✨. Y yo quiero estar ahí para acompañarte, apoyarte en tus decisiones, darte ánimos cuando las cosas se pongan difíciles y recordarte que puedes contar conmigo. Quiero verte cumplir tus metas, hacer realidad tus sueños y, sobre todo, verte feliz.</p>
+    <p>Cuando recién nos conocimos, la verdad, nunca imaginé que llegaría a compartir un día tan bonito contigo 💭. Pero ahora estamos aquí, juntos, compartiendo nuestras vidas y viviendo momentos que para mí son muy especiales. Sé que más adelante podemos pasar por momentos difíciles o tener problemas, como cualquier pareja, pero quiero que sepas que mi intención es seguir a tu lado, apoyarnos mutuamente y encontrar juntos la manera de salir adelante, porque quiero que sigamos construyendo algo bonito entre nosotros 🤝💪.</p>
+    <p>Gracias por ser como eres, por tu sonrisa y por darme un lugar en tu vida. Me hace muy feliz poder compartir estos momentos contigo y espero que podamos seguir viviendo muchos más juntos.</p>
+    <p class="big">¡Mi amor, feliz cumpleaños! 🎂🎉</p>
+    <p>Espero que hoy la pases muy bonito, que disfrutes mucho tu día y que puedas cumplir todo lo que te propongas. Deseo de corazón que te pasen cosas buenas, que nunca te falten motivos para sonreír y que yo pueda estar a tu lado para celebrar cada uno de tus logros.</p>
+    <p class="sign">¡Te amo muchísimo, con todo mi corazón! ❤️<b>Tu amor</b></p>
+  </article>
+
+  <!-- FINAL: siluetas -->
+  <section class="finale" aria-label="Nosotros">
+    <svg viewBox="0 0 400 300" role="img" aria-label="Silueta de una pareja tomada de la mano bajo la luna">
+      <defs>
+        <radialGradient id="moon" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#fff6ee"/><stop offset="70%" stop-color="#ffe6c4"/><stop offset="100%" stop-color="#ffcf6b" stop-opacity=".0"/>
+        </radialGradient>
+        <radialGradient id="halo" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#ff7aa2" stop-opacity=".35"/><stop offset="100%" stop-color="#ff7aa2" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <circle cx="200" cy="140" r="130" fill="url(#halo)"/>
+      <circle cx="200" cy="140" r="84" fill="url(#moon)"/>
+      <circle cx="200" cy="140" r="70" fill="#fff1d6"/>
+      <!-- colina -->
+      <path d="M0 300V250q100-40 200-40t200 40v50z" fill="#120a19"/>
+      <!-- él -->
+      <g fill="#120a19">
+        <circle cx="170" cy="134" r="14"/>
+        <path d="M156 152q14-6 28 0l6 40-4 26h-4l-2 34h-8l-3-30-3 30h-8l-2-34h-4l-4-26z"/>
+        <path d="M184 160l22 26-4 4-24-20z"/>
+      </g>
+      <!-- ella -->
+      <g fill="#120a19">
+        <circle cx="230" cy="142" r="13"/>
+        <path d="M218 134q10-16 24-4 4 10 2 22l-6-4q-2-10-14-10z"/>
+        <path d="M241 140q8 14 4 30l-6-2q2-12-2-24z"/>
+        <path d="M222 156q8-4 16 0l4 28 16 40h-56l16-40z"/>
+        <path d="M222 168l-18 20 4 4 18-16z"/>
+        <path d="M222 224h6l1 28h-6zM234 224h6l1 28h-6z"/>
+      </g>
+      <!-- corazón -->
+      <path class="beat" d="M200 104c-6-8-20-5-20 5 0 10 20 20 20 20s20-10 20-20c0-10-14-13-20-5z" fill="#ff7aa2"/>
+    </svg>
+    <p>Te amo muchísimo</p>
+    <small>12 · 10 · 2026 · nuestro primer cumpleaños juntos</small>
+  </section>
+</main>
+</div>
+
+<button class="music" id="music" aria-pressed="false" aria-label="Reproducir música">♪</button>
+
+<script>
+(function(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- Cielo estrellado ---------- */
+  const sky = document.getElementById('sky'), sc = sky.getContext('2d');
+  let stars = [];
+  function sizeSky(){
+    const d = devicePixelRatio || 1;
+    sky.width = innerWidth*d; sky.height = innerHeight*d; sc.setTransform(d,0,0,d,0,0);
+    stars = Array.from({length: Math.round(innerWidth*innerHeight/5000)}, () => ({
+      x: Math.random()*innerWidth, y: Math.random()*innerHeight, r: Math.random()*1.4+.3, p: Math.random()*6.28, s: .5+Math.random()*1.5
+    }));
+  }
+  function drawSky(t){
+    sc.clearRect(0,0,innerWidth,innerHeight);
+    for(const s of stars){
+      const a = .35 + .65*Math.abs(Math.sin(s.p + t*.001*s.s));
+      sc.fillStyle = `rgba(255,241,214,${a})`;
+      sc.beginPath(); sc.arc(s.x,s.y,s.r,0,6.28); sc.fill();
+    }
+    if(!reduce) requestAnimationFrame(drawSky);
+  }
+  sizeSky(); requestAnimationFrame(drawSky); addEventListener('resize', sizeSky);
+
+  /* ---------- Confeti y corazones ---------- */
+  const fx = document.getElementById('fx'), fc = fx.getContext('2d');
+  let parts = [], running = false;
+  const colors = ['#ff7aa2','#ffcf6b','#bfe6ff','#fff1d6','#d94676','#c7a3ff'];
+  function sizeFx(){ const d=devicePixelRatio||1; fx.width=innerWidth*d; fx.height=innerHeight*d; fc.setTransform(d,0,0,d,0,0); }
+  sizeFx(); addEventListener('resize', sizeFx);
+  function heart(ctx,x,y,s){
+    ctx.beginPath(); ctx.moveTo(x,y+s*.3);
+    ctx.bezierCurveTo(x,y,x-s*.5,y,x-s*.5,y+s*.3);
+    ctx.bezierCurveTo(x-s*.5,y+s*.6,x,y+s*.8,x,y+s);
+    ctx.bezierCurveTo(x,y+s*.8,x+s*.5,y+s*.6,x+s*.5,y+s*.3);
+    ctx.bezierCurveTo(x+s*.5,y,x,y,x,y+s*.3); ctx.fill();
+  }
+  function burst(n, ox, oy){
+    if(reduce) return;
+    for(let i=0;i<n;i++){
+      const a = Math.random()*Math.PI*2, v = 4+Math.random()*9;
+      parts.push({x:ox,y:oy,vx:Math.cos(a)*v,vy:Math.sin(a)*v-6,g:.22,w:6+Math.random()*6,h:4+Math.random()*6,
+        rot:Math.random()*6,vr:(Math.random()-.5)*.4,c:colors[i%colors.length],life:180+Math.random()*80,heart:Math.random()<.18});
+    }
+    if(!running){ running=true; requestAnimationFrame(tick); }
+  }
+  function rain(n){
+    if(reduce) return;
+    for(let i=0;i<n;i++){
+      parts.push({x:Math.random()*innerWidth,y:-20-Math.random()*innerHeight*.5,vx:(Math.random()-.5)*1.5,vy:2+Math.random()*2,g:.02,
+        w:6+Math.random()*6,h:4+Math.random()*5,rot:Math.random()*6,vr:(Math.random()-.5)*.3,c:colors[i%colors.length],life:400,heart:Math.random()<.2});
+    }
+    if(!running){ running=true; requestAnimationFrame(tick); }
+  }
+  function tick(){
+    fc.clearRect(0,0,innerWidth,innerHeight);
+    parts = parts.filter(p => p.life>0 && p.y < innerHeight+40);
+    for(const p of parts){
+      p.vx*=.985; p.vy+=p.g; p.x+=p.vx; p.y+=p.vy; p.rot+=p.vr; p.life--;
+      fc.save(); fc.translate(p.x,p.y); fc.rotate(p.rot); fc.fillStyle=p.c;
+      fc.globalAlpha = Math.min(1,p.life/40);
+      if(p.heart) heart(fc,0,-p.w/2,p.w*1.6); else fc.fillRect(-p.w/2,-p.h/2,p.w,p.h*Math.abs(Math.cos(p.rot*2))+1);
+      fc.restore();
+    }
+    if(parts.length) requestAnimationFrame(tick); else { running=false; fc.clearRect(0,0,innerWidth,innerHeight); }
+  }
+
+  /* ---------- Globos ---------- */
+  const bColors = ['#ff7aa2','#ffcf6b','#bfe6ff','#d94676','#c7a3ff','#ff9f7a'];
+  function balloons(n){
+    if(reduce) return;
+    for(let i=0;i<n;i++){
+      const b = document.createElement('div'); b.className='balloon';
+      const c = bColors[i%bColors.length];
+      b.style.background = `radial-gradient(circle at 35% 30%, ${c}ee, ${c} 60%, ${c}aa)`;
+      b.style.left = (Math.random()*90)+'vw';
+      b.style.setProperty('--dx', ((Math.random()-.5)*80)+'px');
+      b.style.setProperty('--r', ((Math.random()-.5)*20)+'deg');
+      const s = .7+Math.random()*.6; b.style.width = 58*s+'px'; b.style.height = 72*s+'px';
+      b.style.animationDuration = (7+Math.random()*5)+'s';
+      b.style.animationDelay = (Math.random()*2.5)+'s';
+      const k = document.createElement('i'); k.style.borderBottomColor = c; b.appendChild(k);
+      document.body.appendChild(b);
+      b.addEventListener('animationend', () => b.remove());
+    }
+  }
+
+  /* ---------- Música suave tipo caja musical (WebAudio, lenta y bajita) ---------- */
+  let actx = null, master = null, playing = false, timer = null;
+  const musicBtn = document.getElementById('music');
+  const fileAudio = new Audio(); fileAudio.loop = true; fileAudio.preload = 'auto';
+  fileAudio.src = 'musica.mp3';
+  let usingFile = false;
+  // "Feliz cumpleaños" lento, en caja musical, con acordes suaves de fondo
+  const N = {G4:392,A4:440,B4:493.9,C5:523.3,D5:587.3,E5:659.3,F5:698.5,G5:784};
+  const CH = {
+    C:{bass:130.8, tri:[261.6,329.6,392.0]},
+    G:{bass:98.0,  tri:[246.9,293.7,392.0]},
+    F:{bass:87.3,  tri:[261.6,349.2,440.0]}
+  };
+  const song = [
+    ['G4',.75],['G4',.25],
+    ['A4',1,'C'],['G4',1],['C5',1],
+    ['B4',2,'G'],['G4',.75],['G4',.25],
+    ['A4',1,'G'],['G4',1],['D5',1],
+    ['C5',2,'C'],['G4',.75],['G4',.25],
+    ['G5',1,'C'],['E5',1],['C5',1],
+    ['B4',1,'F'],['A4',2],
+    ['F5',.75,'F'],['F5',.25],['E5',1,'C'],['C5',1],
+    ['D5',1,'G'],['C5',3,'C']
+  ];
+  const beat = .58;              // ritmo tranquilo y relajado
+  CH.Am = {bass:110.0, tri:[220.0,261.6,329.6]};
+  CH.Em = {bass:82.4,  tri:[246.9,329.6,392.0]};
+  // piano suave: onda triangular + armónico leve, filtrado que se cierra como un piano real
+  function piano(freq, t, vol, decay){
+    const o = actx.createOscillator(), o2 = actx.createOscillator();
+    const h = actx.createGain(), f = actx.createBiquadFilter(), g = actx.createGain();
+    o.type = 'triangle'; o.frequency.value = freq;
+    o2.type = 'sine'; o2.frequency.value = freq*2; h.gain.value = .25;
+    f.type = 'lowpass'; f.Q.value = .5;
+    f.frequency.setValueAtTime(Math.min(freq*6, 3200), t);
+    f.frequency.setTargetAtTime(freq*1.5, t, .35);
+    g.gain.setValueAtTime(0, t);
+    g.gain.linearRampToValueAtTime(vol, t + .012);
+    g.gain.setTargetAtTime(0, t + .015, decay);
+    o.connect(f); o2.connect(h).connect(f); f.connect(g).connect(master);
+    const end = t + decay*6;
+    o.start(t); o2.start(t); o.stop(end); o2.stop(end);
+  }
+  function bell(freq, t, vol){
+    const o = actx.createOscillator(), g = actx.createGain();
+    o.type = 'sine'; o.frequency.value = freq;
+    g.gain.setValueAtTime(0, t);
+    g.gain.setTargetAtTime(vol, t, .06);              // entrada redondeada, sin golpe
+    g.gain.setTargetAtTime(0, t + .18, .3);           // se desvanece suave, sin arrastrarse
+    o.connect(g).connect(master); o.start(t); o.stop(t + 2);
+  }
+  function pad(freq, t, dur, vol){
+    const o = actx.createOscillator(), g = actx.createGain();
+    o.type = 'sine'; o.frequency.value = freq;
+    g.gain.setValueAtTime(0, t);
+    g.gain.linearRampToValueAtTime(vol, t + .8);
+    g.gain.linearRampToValueAtTime(0, t + dur);
+    o.connect(g).connect(master); o.start(t); o.stop(t + dur + .1);
+  }
+  function playLoop(){
+    if(!actx) return;
+    let t = actx.currentTime + .1;
+    // escala de Do para la segunda voz (una tercera abajo)
+    const S = [261.6,293.7,329.6,349.2,392.0,440.0,493.9,523.3,587.3,659.3,698.5,784.0];
+    const idx = {G4:4,A4:5,B4:6,C5:7,D5:8,E5:9,F5:10,G5:11};
+    // arpegio de un compás (3 tiempos en corcheas)
+    const arp = (ch, t0, b, vol) => {
+      const c = CH[ch];
+      piano(c.bass, t0, .15, .6);
+      [0,1,2,1,2,1].forEach((i, k) => piano(c.tri[i], t0 + k*b/2, vol, .35));
+    };
+    // la canción completa; fancy = segunda vuelta más llena y con final lento
+    const verse = (fancy) => {
+      song.forEach(([n, d, ch], i) => {
+        const b = fancy && i >= song.length - 2 ? beat*1.45 : beat;
+        if(ch){
+          if(fancy) arp(ch, t, b, .04);
+          else { const c = CH[ch]; piano(c.bass, t, .16, .55); for(const k of [1,2]) c.tri.forEach(fq => piano(fq, t + k*b, .045, .3)); }
+        }
+        const last = i === song.length - 1;
+        piano(N[n], t, .17, fancy && last ? 1.4 : .6);           // melodía
+        if(fancy) piano(S[idx[n] - 2], t, .06, last ? 1.4 : .6);  // segunda voz
+        t += d*b;
+      });
+    };
+
+    // secciones románticas originales: arpegios lentos y una melodía tierna arriba
+    const romance = (bars, answer) => bars.forEach(([ch, mel], k) => {
+      const b = beat*1.15;
+      arp(ch, t, b, .035);
+      piano(mel, t, .12, 1.1);
+      if(answer && k % 2) piano(mel*.8909, t + 1.5*b, .07, .8);   // pequeña nota de respuesta
+      t += 3*b;
+    });
+    const partA = [['C',659.3],['Em',493.9],['Am',523.3],['F',440.0],['C',392.0],['G',493.9],['F',523.3],['G',587.3]];
+    const partB = [['F',440.0],['G',493.9],['Em',392.0],['Am',659.3],['F',523.3],['C',659.3],['G',587.3],['C',523.3]];
+    const partC = [['Am',523.3],['F',440.0],['C',392.0],['G',493.9],['Am',440.0],['Em',392.0],['F',349.2],['G',392.0]];
+
+    for(const ch of ['C','F','G','C']){ arp(ch, t, beat*1.15, .045); t += 3*beat*1.15; } // intro
+    romance(partA, true);
+    romance(partB, false);
+    romance(partC, true);
+    verse(true);                    // "Feliz cumpleaños" una sola vez, como momento especial
+    romance(partA, false);          // vuelve lo romántico para cerrar
+    [130.8, 261.6, 329.6, 392.0, 523.3].forEach((fq, k) => piano(fq, t + k*.09, k ? .07 : .14, 1.3)); // acorde final
+    t += 8*beat;                    // pausa larga antes de repetir
+    timer = setTimeout(() => { if(playing) playLoop(); }, (t - actx.currentTime - .05)*1000);
+  }
+  function startMusic(){
+    try{
+      if(!actx){
+        actx = new (window.AudioContext||window.webkitAudioContext)();
+        const lp = actx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 3500; lp.Q.value = .3;
+        const delay = actx.createDelay(); delay.delayTime.value = .18;
+        const fb = actx.createGain(); fb.gain.value = .1;
+        const wet = actx.createGain(); wet.gain.value = .08;   // eco casi imperceptible, solo da calidez
+        master = actx.createGain(); master.gain.value = 0;
+        master.connect(lp); lp.connect(actx.destination);
+        lp.connect(delay); delay.connect(fb); fb.connect(delay); delay.connect(wet); wet.connect(actx.destination);
+        master.gain.linearRampToValueAtTime(.7, actx.currentTime + 3); // entra despacito
+      }
+      if(actx.state==='suspended') actx.resume();
+      playing = true; musicBtn.setAttribute('aria-pressed','true'); musicBtn.setAttribute('aria-label','Pausar música');
+      // si existe musica.mp3 junto a la página, se usa ese archivo; si no, el piano generado
+      fileAudio.volume = .6;
+      fileAudio.play()
+        .then(() => { usingFile = true; })
+        .catch(() => { usingFile = false; if(playing && actx) playLoop(); });
+    }catch(e){}
+  }
+  function stopMusic(){
+    if(usingFile){ try{ fileAudio.pause(); }catch(e){} }
+    playing = false; clearTimeout(timer); musicBtn.setAttribute('aria-pressed','false'); musicBtn.setAttribute('aria-label','Reproducir música');
+    if(actx){
+      const a = actx; actx = null;
+      try{ master.gain.cancelScheduledValues(a.currentTime); master.gain.setValueAtTime(master.gain.value, a.currentTime); master.gain.linearRampToValueAtTime(0, a.currentTime + .8); }catch(e){}
+      setTimeout(() => { try{ a.close(); }catch(e){} }, 900);
+    }
+  }
+  musicBtn.addEventListener('click', () => playing ? stopMusic() : startMusic());
+
+  /* ---------- Abrir sobre ---------- */
+  const intro = document.getElementById('intro'), env = document.getElementById('envelope');
+  let opened = false;
+  function openIt(){
+    if(opened) return; opened = true;
+    env.classList.add('open');
+    startMusic();
+    setTimeout(() => {
+      intro.classList.add('gone');
+      burst(140, innerWidth/2, innerHeight*.45);
+      balloons(10);
+    }, 750);
+  }
+  env.addEventListener('click', openIt);
+  document.getElementById('openBtn').addEventListener('click', openIt);
+
+  /* ---------- Soplar velas ---------- */
+  const cake = document.getElementById('cake'), blowBtn = document.getElementById('blowBtn');
+  const wish = document.getElementById('wish'), msg = document.getElementById('stateMsg');
+  let blown = false;
+  function blow(){
+    if(blown){ // volver a encenderlas
+      blown = false; cake.classList.remove('blown'); wish.textContent='Pide un deseo…';
+      blowBtn.textContent='Soplar las velas'; msg.textContent='Toca la torta o el botón para soplar'; return;
+    }
+    blown = true; cake.classList.add('blown');
+    const r = cake.getBoundingClientRect();
+    setTimeout(() => {
+      burst(200, r.left + r.width/2, r.top + r.height*.25);
+      rain(120); balloons(14);
+      wish.textContent = '¡Que se cumpla! ✨';
+      msg.textContent = 'Ahora baja y lee tu carta 💌';
+      blowBtn.textContent = 'Encender otra vez';
+      const letter = document.getElementById('letter');
+      letter.querySelectorAll('p').forEach((p,i) => { p.classList.remove('reveal'); void p.offsetWidth; p.style.animationDelay = (i*.12)+'s'; p.classList.add('reveal'); });
+    }, 350);
+  }
+  cake.addEventListener('click', blow);
+  blowBtn.addEventListener('click', blow);
+
+  /* corazones al tocar en cualquier parte después de abrir */
+  document.addEventListener('pointerdown', e => {
+    if(!opened || e.target.closest('button')) return;
+    for(let i=0;i<8;i++){
+      const a = Math.random()*6.28, v = 2+Math.random()*4;
+      parts.push({x:e.clientX,y:e.clientY,vx:Math.cos(a)*v,vy:Math.sin(a)*v-3,g:.12,w:10,h:10,rot:0,vr:0,c:i%2?'#ff7aa2':'#d94676',life:80,heart:true});
+    }
+    if(!reduce && !running){ running=true; requestAnimationFrame(tick); }
+  });
+})();
+</script>
+</body>
+</html>
